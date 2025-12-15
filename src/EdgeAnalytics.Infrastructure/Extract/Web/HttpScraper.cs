@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Net;
 using EdgeAnalytics.Abstractions.Extract;
 using EdgeAnalytics.Domain.Common;
@@ -8,6 +9,7 @@ public sealed class HttpScraper : IScraper
 {
     private readonly HttpClient _client;
     private readonly SemaphoreSlim _throttle = new(1, 1);
+    private static readonly ActivitySource ActivitySource = new("EdgeAnalytics.Scraping");
 
     public HttpScraper(HttpClient client)
     {

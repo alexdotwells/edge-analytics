@@ -12,6 +12,9 @@ using EdgeAnalytics.Infrastructure.Pipeline;
 using EdgeAnalytics.Application.Execution;
 using EdgeAnalytics.Infrastructure.Extract.Web;
 using Microsoft.Extensions.DependencyInjection;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<PipelineHostedService>();
@@ -31,6 +34,25 @@ builder.Services.AddHttpClient<IScraper, HttpScraper>(client =>
         "EdgeAnalyticsBot/1.0 (+contact@example.com)");
 });
 
-
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(resource => resource
+        .AddService(
+            serviceName: "EdgeAnalytics.Worker",
+            serviceVersion: "1.0.0"))
+    .WithTracing(tracing =>
+    {
+        tracing
+            .AddHttpClientInstrumentation()
+            .AddSource("EdgeAnalytics.Pipelines")
+            .AddSource("EdgeAnalytics.Scraping")
+            .AddConsoleExporter();
+    })
+    .WithMetrics(metrics =>
+    {
+        metrics
+            .AddRuntimeInstrumentation()
+            .AddConsoleExporter();
+    });
+    
 var host = builder.Build();
 host.Run();

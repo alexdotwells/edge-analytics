@@ -3,6 +3,7 @@ using EdgeAnalytics.Abstractions.Load;
 using EdgeAnalytics.Abstractions.Pipeline;
 using EdgeAnalytics.Abstractions.Transform;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace EdgeAnalytics.Pipelines.Common;
 
@@ -15,6 +16,8 @@ public abstract class PipelineBase<TExtracted, TLoaded> : IPipeline
     private readonly IReadOnlyList<ITransformer<object, object>> _transformers;
     private readonly ILoader<TLoaded> _loader;
     private readonly ILogger _logger;
+    private static readonly ActivitySource ActivitySource =
+        new("EdgeAnalytics.Pipelines");
 
     protected PipelineBase(
         IExtractor<TExtracted>? extractor,
@@ -32,38 +35,46 @@ public abstract class PipelineBase<TExtracted, TLoaded> : IPipeline
 
     public async Task RunAsync(PipelineContext context, CancellationToken ct)
     {
-        _logger.LogInformation("Pipeline execution started");
+        using var activity = ActivitySource.StartActivity(
+            Name,
+            ActivityKind.Internal);
 
-        object current;
+            activity?.SetTag("pipeline.name", Name);
+            activity?.SetTag("pipeline.window.start", context.WindowStartUtc);
+            activity?.SetTag("pipeline.window.end", context.WindowEndUtc);
 
-        if (_contextualExtractor is not null)
-        {
-            _logger.LogInformation("Using contextual extractor");
-            current = await _contextualExtractor.ExtractAsync(context, ct);
-        }
-        else if (_extractor is not null)
-        {
-            _logger.LogInformation("Using legacy extractor");
-            current = await _extractor.ExtractAsync(ct);
-        }
-        else
-        {
-            throw new InvalidOperationException(
-                $"No extractor registered for pipeline '{Name}'.");
-        }
+            _logger.LogInformation("Pipeline execution started");
 
-        foreach (var transformer in _transformers)
-        {
-            _logger.LogInformation(
-                "Applying transformer {Transformer}",
-                transformer.GetType().Name);
+            object current;
 
-            current = await transformer.TransformAsync(current, ct);
-        }
+            if (_contextualExtractor is not null)
+            {
+                _logger.LogInformation("Using contextual extractor");
+                current = await _contextualExtractor.ExtractAsync(context, ct);
+            }
+            else if (_extractor is not null)
+            {
+                _logger.LogInformation("Using legacy extractor");
+                current = await _extractor.ExtractAsync(ct);
+            }
+            else
+            {
+                throw new InvalidOperationException(
+                    $"No extractor registered for pipeline '{Name}'.");
+            }
 
-        await _loader.LoadAsync((TLoaded)current, ct);
+            foreach (var transformer in _transformers)
+            {
+                _logger.LogInformation(
+                    "Applying transformer {Transformer}",
+                    transformer.GetType().Name);
 
-        _logger.LogInformation("Pipeline execution finished");
+                current = await transformer.TransformAsync(current, ct);
+            }
+
+            await _loader.LoadAsync((TLoaded)current, ct);
+
+            _logger.LogInformation("Pipeline execution finished");
     }
-    
+
 }

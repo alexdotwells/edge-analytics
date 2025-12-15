@@ -53,6 +53,8 @@ public sealed class PipelineRunner
 
             try
             {
+                PipelineMetrics.Runs.Add(1);
+
                 // Cancellation-aware Polly execution
                 await policy.ExecuteAsync(
                     async token => await pipeline.RunAsync(context, token),
@@ -68,6 +70,7 @@ public sealed class PipelineRunner
             }
             catch (PipelineFailureException ex)
             {
+                PipelineMetrics.Failures.Add(1);
                 _logger.LogError(
                     ex,
                     "Pipeline failed with {FailureType} failure",
