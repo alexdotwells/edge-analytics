@@ -3,5 +3,5 @@ namespace EdgeAnalytics.Abstractions.Pipeline;
 public interface IPipeline
 {
     string Name { get; }
-    Task RunAsync(CancellationToken ct);
+    Task RunAsync(PipelineContext context, CancellationToken ct);
 }

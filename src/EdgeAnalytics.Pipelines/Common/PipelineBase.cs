@@ -23,7 +23,7 @@ public abstract class PipelineBase<TExtracted, TLoaded> : IPipeline
         _loader = loader;
     }
 
-    public async Task RunAsync(CancellationToken ct)
+    public async Task RunAsync(PipelineContext context, CancellationToken ct)
     {
         object current = await _extractor.ExtractAsync(ct);
 

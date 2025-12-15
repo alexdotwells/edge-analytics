@@ -20,11 +20,11 @@ builder.Services.AddSingleton<ITransformer<object, object>, UppercaseTransformer
 var host = builder.Build();
 
 // ---- PROOF OF LIFE (TEMP) ----
-using (var scope = host.Services.CreateScope())
-{
-    var runner = scope.ServiceProvider.GetRequiredService<PipelineRunner>();
-    await runner.RunAsync("cbb-draftkings-odds-v1", CancellationToken.None);
-}
+// using (var scope = host.Services.CreateScope())
+// {
+//     var runner = scope.ServiceProvider.GetRequiredService<PipelineRunner>();
+//     await runner.RunAsync("cbb-draftkings-odds-v1", CancellationToken.None);
+// }
 // --------------------------------------------
 
 host.Run();
