@@ -18,6 +18,8 @@ builder.Services.AddSingleton<ILoader<string>, ConsoleLoader>();
 builder.Services.AddSingleton<IPipeline, DraftKingsOddsPipeline>();
 builder.Services.AddSingleton<PipelineRunner>();
 builder.Services.AddSingleton<ITransformer<object, object>, UppercaseTransformer>();
+builder.Services.Configure<PipelineScheduleOptions>(builder.Configuration);
+
 
 var host = builder.Build();
 
