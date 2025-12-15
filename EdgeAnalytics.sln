@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{545F972C-4C14-4993-A47B-292A15E90914}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeAnalytics.Abstractions", "src\EdgeAnalytics.Abstractions\EdgeAnalytics.Abstractions.csproj", "{41061704-0D7A-4401-8AA7-F2E34BD19531}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeAnalytics.Application", "src\EdgeAnalytics.Application\EdgeAnalytics.Application.csproj", "{A1D6D33A-13E8-4F80-AF27-2F095DD5F5A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeAnalytics.Domain", "src\EdgeAnalytics.Domain\EdgeAnalytics.Domain.csproj", "{A758D519-7246-49E1-B213-2171AFAA9D69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeAnalytics.Infrastructure", "src\EdgeAnalytics.Infrastructure\EdgeAnalytics.Infrastructure.csproj", "{66BA9FC0-0179-4B48-86A4-1FB891FA181B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeAnalytics.Pipelines", "src\EdgeAnalytics.Pipelines\EdgeAnalytics.Pipelines.csproj", "{363BD43E-EF77-4215-ABA0-4F9C3A94AF52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeAnalytics.Worker", "src\EdgeAnalytics.Worker\EdgeAnalytics.Worker.csproj", "{C845E032-A7C0-40B7-945E-A7CBA23A34F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AF6DE78-7F73-45CD-9105-3EE379847219}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeAnalytics.Application.Tests", "tests\EdgeAnalytics.Application.Tests\EdgeAnalytics.Application.Tests.csproj", "{BDFF9F3D-CEDC-4ADF-AECE-1F9A9E1F0ED8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeAnalytics.Domain.Tests", "tests\EdgeAnalytics.Domain.Tests\EdgeAnalytics.Domain.Tests.csproj", "{70E4C0A5-DC94-4448-AFF7-6CB90CC78593}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeAnalytics.Pipelines.Tests", "tests\EdgeAnalytics.Pipelines.Tests\EdgeAnalytics.Pipelines.Tests.csproj", "{475EA17A-ECFE-4200-8DC3-F87323A7B6E2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41061704-0D7A-4401-8AA7-F2E34BD19531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41061704-0D7A-4401-8AA7-F2E34BD19531}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41061704-0D7A-4401-8AA7-F2E34BD19531}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41061704-0D7A-4401-8AA7-F2E34BD19531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1D6D33A-13E8-4F80-AF27-2F095DD5F5A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1D6D33A-13E8-4F80-AF27-2F095DD5F5A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1D6D33A-13E8-4F80-AF27-2F095DD5F5A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1D6D33A-13E8-4F80-AF27-2F095DD5F5A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A758D519-7246-49E1-B213-2171AFAA9D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A758D519-7246-49E1-B213-2171AFAA9D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A758D519-7246-49E1-B213-2171AFAA9D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A758D519-7246-49E1-B213-2171AFAA9D69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66BA9FC0-0179-4B48-86A4-1FB891FA181B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66BA9FC0-0179-4B48-86A4-1FB891FA181B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66BA9FC0-0179-4B48-86A4-1FB891FA181B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66BA9FC0-0179-4B48-86A4-1FB891FA181B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{363BD43E-EF77-4215-ABA0-4F9C3A94AF52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{363BD43E-EF77-4215-ABA0-4F9C3A94AF52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{363BD43E-EF77-4215-ABA0-4F9C3A94AF52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{363BD43E-EF77-4215-ABA0-4F9C3A94AF52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C845E032-A7C0-40B7-945E-A7CBA23A34F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C845E032-A7C0-40B7-945E-A7CBA23A34F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C845E032-A7C0-40B7-945E-A7CBA23A34F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C845E032-A7C0-40B7-945E-A7CBA23A34F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDFF9F3D-CEDC-4ADF-AECE-1F9A9E1F0ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDFF9F3D-CEDC-4ADF-AECE-1F9A9E1F0ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDFF9F3D-CEDC-4ADF-AECE-1F9A9E1F0ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDFF9F3D-CEDC-4ADF-AECE-1F9A9E1F0ED8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E4C0A5-DC94-4448-AFF7-6CB90CC78593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E4C0A5-DC94-4448-AFF7-6CB90CC78593}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E4C0A5-DC94-4448-AFF7-6CB90CC78593}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E4C0A5-DC94-4448-AFF7-6CB90CC78593}.Release|Any CPU.Build.0 = Release|Any CPU
+		{475EA17A-ECFE-4200-8DC3-F87323A7B6E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{475EA17A-ECFE-4200-8DC3-F87323A7B6E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{475EA17A-ECFE-4200-8DC3-F87323A7B6E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{475EA17A-ECFE-4200-8DC3-F87323A7B6E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{41061704-0D7A-4401-8AA7-F2E34BD19531} = {545F972C-4C14-4993-A47B-292A15E90914}
+		{A1D6D33A-13E8-4F80-AF27-2F095DD5F5A8} = {545F972C-4C14-4993-A47B-292A15E90914}
+		{A758D519-7246-49E1-B213-2171AFAA9D69} = {545F972C-4C14-4993-A47B-292A15E90914}
+		{66BA9FC0-0179-4B48-86A4-1FB891FA181B} = {545F972C-4C14-4993-A47B-292A15E90914}
+		{363BD43E-EF77-4215-ABA0-4F9C3A94AF52} = {545F972C-4C14-4993-A47B-292A15E90914}
+		{C845E032-A7C0-40B7-945E-A7CBA23A34F4} = {545F972C-4C14-4993-A47B-292A15E90914}
+		{BDFF9F3D-CEDC-4ADF-AECE-1F9A9E1F0ED8} = {0AF6DE78-7F73-45CD-9105-3EE379847219}
+		{70E4C0A5-DC94-4448-AFF7-6CB90CC78593} = {0AF6DE78-7F73-45CD-9105-3EE379847219}
+		{475EA17A-ECFE-4200-8DC3-F87323A7B6E2} = {0AF6DE78-7F73-45CD-9105-3EE379847219}
+	EndGlobalSection
+EndGlobal

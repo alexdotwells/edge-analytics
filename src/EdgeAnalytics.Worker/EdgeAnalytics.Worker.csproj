@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-EdgeAnalytics.Worker-52027da6-5a7e-4359-9146-025142264a3f</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EdgeAnalytics.Application\EdgeAnalytics.Application.csproj" />
+    <ProjectReference Include="..\EdgeAnalytics.Pipelines\EdgeAnalytics.Pipelines.csproj" />
+    <ProjectReference Include="..\EdgeAnalytics.Infrastructure\EdgeAnalytics.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
