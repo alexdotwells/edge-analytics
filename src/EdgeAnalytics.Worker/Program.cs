@@ -10,6 +10,8 @@ using EdgeAnalytics.Infrastructure.Transform.Normalize;
 using EdgeAnalytics.Abstractions.Transform;
 using EdgeAnalytics.Infrastructure.Pipeline;
 using EdgeAnalytics.Application.Execution;
+using EdgeAnalytics.Infrastructure.Extract.Web;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<PipelineHostedService>();
@@ -21,6 +23,14 @@ builder.Services.AddSingleton<ITransformer<object, object>, UppercaseTransformer
 builder.Services.Configure<PipelineScheduleOptions>(builder.Configuration);
 builder.Services.AddSingleton<PipelineRetryPolicyFactory>();
 builder.Services.AddSingleton<IPipeline, DraftKingsOddsPipeline>();
+
+builder.Services.AddHttpClient<IScraper, HttpScraper>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(15);
+    client.DefaultRequestHeaders.UserAgent.ParseAdd(
+        "EdgeAnalyticsBot/1.0 (+contact@example.com)");
+});
+
 
 var host = builder.Build();
 host.Run();
