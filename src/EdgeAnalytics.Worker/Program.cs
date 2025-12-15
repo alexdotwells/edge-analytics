@@ -10,7 +10,8 @@ using EdgeAnalytics.Infrastructure.Transform.Normalize;
 using EdgeAnalytics.Abstractions.Transform;
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<Worker>();
+//builder.Services.AddHostedService<Worker>();
+builder.Services.AddHostedService<PipelineHostedService>();
 builder.Services.AddSingleton<IExtractor<string>, DraftKingsOddsExtractor>();
 builder.Services.AddSingleton<ILoader<string>, ConsoleLoader>();
 builder.Services.AddSingleton<IPipeline, DraftKingsOddsPipeline>();
