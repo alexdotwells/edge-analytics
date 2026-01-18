@@ -41,3 +41,5 @@ secrets.json
 outputs/
 data/*.csv
 data/*.json
+/data
+/scaffold_edge_analytics.sh
