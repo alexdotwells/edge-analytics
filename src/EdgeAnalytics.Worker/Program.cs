@@ -3,9 +3,7 @@ using EdgeAnalytics.Application;
 using EdgeAnalytics.Abstractions.Extract;
 using EdgeAnalytics.Abstractions.Load;
 using EdgeAnalytics.Abstractions.Pipeline;
-using EdgeAnalytics.Infrastructure.Extract.Sportsbook.DraftKings;
 using EdgeAnalytics.Infrastructure.Load;
-using EdgeAnalytics.Pipelines.CollegeBasketball.Sportsbook.DraftKings.v1;
 using EdgeAnalytics.Infrastructure.Transform.Normalize;
 using EdgeAnalytics.Abstractions.Transform;
 using EdgeAnalytics.Infrastructure.Pipeline;
@@ -50,16 +48,14 @@ builder.Logging.Services.BuildServiceProvider()
     .CreateLogger("Startup")
     .LogInformation("Resolved DataRoot: {Path}", dataRootPath);
 builder.Services.AddSingleton(new DataRoot(dataRootPath));
-
 builder.Services.AddHostedService<PipelineHostedService>();
 builder.Services.AddSingleton<IWatermarkStore, FileWatermarkStore>();
-builder.Services.AddSingleton<IContextualExtractor<string>, DraftKingsOddsScraper>();
 builder.Services.AddSingleton<ILoader<string>, ConsoleLoader>();
 builder.Services.AddSingleton<PipelineRunner>();
 builder.Services.AddSingleton<ITransformer<object, object>, UppercaseTransformer>();
 builder.Services.Configure<PipelineScheduleOptions>(builder.Configuration);
 builder.Services.AddSingleton<PipelineRetryPolicyFactory>();
-builder.Services.AddSingleton<IPipeline, DraftKingsOddsPipeline>();
+
 
 // Http clients
 builder.Services.AddHttpClient();
@@ -76,6 +72,9 @@ builder.Services.AddSingleton<IContextualExtractor<string>, ScoresAndOddsConsens
 builder.Services.AddSingleton<ScoresAndOddsConsensusParser>();
 builder.Services.AddSingleton<DedupingNdjsonSink<ScoresAndOddsSpreadMarketState>>();
 builder.Services.AddSingleton<IPipeline, ScoresAndOddsConsensusPipeline>();
+
+//builder.Services.AddSingleton<IContextualExtractor<string>, DraftKingsOddsScraper>();
+//builder.Services.AddSingleton<IPipeline, DraftKingsOddsPipeline>();
 
 var host = builder.Build();
 host.Run();

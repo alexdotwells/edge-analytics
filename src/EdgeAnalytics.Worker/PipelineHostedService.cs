@@ -1,8 +1,6 @@
 using EdgeAnalytics.Application;
 using EdgeAnalytics.Abstractions.Pipeline;
 using EdgeAnalytics.Domain.Common;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace EdgeAnalytics.Worker;

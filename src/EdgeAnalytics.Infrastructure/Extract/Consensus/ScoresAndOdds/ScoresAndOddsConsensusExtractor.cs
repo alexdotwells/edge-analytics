@@ -1,6 +1,5 @@
 ﻿using EdgeAnalytics.Abstractions.Extract;
 using EdgeAnalytics.Abstractions.Pipeline;
-using EdgeAnalytics.Domain.Common;
 using Microsoft.Extensions.Logging;
 
 namespace EdgeAnalytics.Infrastructure.Extract.Consensus.ScoresAndOdds;

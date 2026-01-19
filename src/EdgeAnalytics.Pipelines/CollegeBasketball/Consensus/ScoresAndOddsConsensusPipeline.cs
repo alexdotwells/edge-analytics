@@ -1,6 +1,5 @@
 using EdgeAnalytics.Abstractions.Extract;
 using EdgeAnalytics.Abstractions.Pipeline;
-using EdgeAnalytics.Domain.Common;
 using EdgeAnalytics.Infrastructure.Extract.Consensus.ScoresAndOdds;
 using EdgeAnalytics.Infrastructure.Load.File;
 using Microsoft.Extensions.Logging;
@@ -55,10 +54,8 @@ public sealed class ScoresAndOddsConsensusPipeline : IPipeline
             Source: "ScoresAndOdds"
         )).ToList();
 
-        // Persist only changes
-        
+        // Persist only changes    
         static string IdentityKey(ScoresAndOddsSpreadMarketState s)
-            // identity = the "thing" we are tracking changes for (a single game market)
             => $"{s.GameStartUtc:O}|{s.AwayTeam}|{s.HomeTeam}|spread";
             //TODO: team IDs to improve gamekey
             //=> $"{s.GameStartUtc:O}|{s.AwayTeamId}|{s.HomeTeamId}|spread";

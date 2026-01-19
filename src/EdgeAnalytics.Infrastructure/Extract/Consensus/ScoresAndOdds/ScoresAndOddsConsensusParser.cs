@@ -1,6 +1,5 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
-using EdgeAnalytics.Domain.Common;
 
 namespace EdgeAnalytics.Infrastructure.Extract.Consensus.ScoresAndOdds;
 
@@ -9,13 +8,13 @@ public sealed record ScoresAndOddsSpreadConsensus(
     DateTimeOffset GameStartUtc,
     string AwayTeam,
     string HomeTeam,
-    decimal HomeSpread,                // e.g., +6.5
+    decimal HomeSpread,
     int AwayBetsPct,
     int HomeBetsPct,
     int AwayHandlePct,
     int HomeHandlePct,
-    int? AwayOdds,                     // e.g., -102 (optional)
-    int? HomeOdds                      // e.g., -110 (optional)
+    int? AwayOdds,
+    int? HomeOdds
 );
 
 public sealed class ScoresAndOddsConsensusParser
@@ -48,7 +47,6 @@ public sealed class ScoresAndOddsConsensusParser
             var utcValue = card.QuerySelector(".event-info [data-role='localtime']")?.GetAttribute("data-value");
             if (!DateTimeOffset.TryParse(utcValue, out var gameStartUtc))
             {
-                // If this fails, we can still proceed (but ideally log and skip)
                 continue;
             }
 
@@ -98,7 +96,6 @@ public sealed class ScoresAndOddsConsensusParser
             }
 
             // Convention: store HomeSpread, and assume AwaySpread = -HomeSpread
-            // In your example: HomeSpread = +6.5
             results.Add(new ScoresAndOddsSpreadConsensus(
                 ObservedAtUtc: observedAtUtc,
                 GameStartUtc: gameStartUtc,
